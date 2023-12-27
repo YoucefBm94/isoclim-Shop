@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1040963148149",
+    "project_id": "isoclim25",
+    "storage_bucket": "isoclim25.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1040963148149:android:57f54960b31dba9fbc5b3c",
+        "android_client_info": {
+          "package_name": "com.example.isoclim25"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDaDE6tG75MtiGfWrFYZQDi2qMttdo0QRg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
