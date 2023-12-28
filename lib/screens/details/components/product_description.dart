@@ -4,14 +4,13 @@ import 'package:shop_app/models/Product.dart';
 
 import '../../../constants.dart';
 import '../../../size_config.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class ProductDescription extends StatelessWidget {
   const ProductDescription({
-    Key? key,
+    super.key,
     required this.product,
     this.pressOnSeeMore,
-  }) : super(key: key);
+  });
 
   final Product product;
   final GestureTapCallback? pressOnSeeMore;

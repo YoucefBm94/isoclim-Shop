@@ -24,7 +24,7 @@ class Body extends StatelessWidget {
                   textAlign: TextAlign.center,
                 ),
                 SizedBox(height: SizeConfig.screenHeight * 0.06),
-                AddProductsForm(),
+                const AddProductsForm(),
                 SizedBox(height: getProportionateScreenHeight(30)),
 
               ],

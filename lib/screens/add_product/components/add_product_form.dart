@@ -6,7 +6,7 @@ import 'package:shop_app/components/default_button.dart';
 
 import '../../../models/Category.dart';
 import '../../../models/Product.dart';
-import '../../../services/FirestoreService.dart';
+import '../../../services/firestoreservice.dart';
 import '../../../size_config.dart';
 
 
@@ -18,13 +18,13 @@ class AddProductsForm extends StatefulWidget {
 }
 
 class AddProductsFormState extends State<AddProductsForm> {
-  final _formKey = GlobalKey<FormState>();
   String? title, description;
-  List<String>? images;
+  late List<String> images;
   double? rating, price;
   bool? isFavourite, isPopular;
   String? pdfUrl;
   EnumCategories? selectedCategory;
+  Product? product;
 
   final List<String?> errors = [];
 
@@ -49,7 +49,8 @@ class AddProductsFormState extends State<AddProductsForm> {
 
 
 
-  double uploadProgress = 0;
+  final _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -83,7 +84,7 @@ class AddProductsFormState extends State<AddProductsForm> {
                 _formKey.currentState!.save();
 
                 Product product = Product(
-                  id:"",
+
                   images: images,
                   rating: rating!,
                   isFavourite: isFavourite!,

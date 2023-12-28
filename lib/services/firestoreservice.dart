@@ -1,11 +1,9 @@
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
 import 'dart:io';
 import 'package:path_provider/path_provider.dart';
 
-import '../models/Category.dart';
 import '../models/Product.dart';
 
 /// A service class to interact with Firestore database.
@@ -59,33 +57,6 @@ class FirestoreService {
     return product;
   }
 
-  Future<void> addProduct(Product product) async {
-    // Upload each image to Firebase Storage and replace the local path with the download URL
-    for (int i = 0; i < product.images!.length; i++) {
-      File file = File(product.images![i]);
-      String downloadURL = await uploadImage(file);
-      product.images![i] = downloadURL;
-    }
-
-    // Upload the PDF to Firebase Storage and replace the local path with the download URL
-    File pdfFile = File(product.pdfUrl);
-    String pdfDownloadURL = await uploadPdf(pdfFile);
-    product.pdfUrl = pdfDownloadURL;
-
-    // Create a new document reference
-    DocumentReference docRef = _db.collection('products').doc();
-    product.id = docRef.id;
-
-// Convert the Category instance to a Map
-    Map<String, dynamic> categoryJson = product.category!.toJson();
-
-    // Create a new Map with the product data and the converted Category
-    Map<String, dynamic> productJson = product.toJson();
-    productJson['category'] = categoryJson;
-
-    // Add the product data to the Firestore document
-    await docRef.set(productJson);
-  }
 
 
   Future<List<Product>> getProductsByCategory(String categoryName) async {
@@ -160,6 +131,27 @@ class FirestoreService {
 
 
 
+  Future<void> addProduct(Product product) async {
+    product.images = await Future.wait(product.images.map((image) async {
+      return await uploadImage(File(image));
+    }));
+
+    product.pdfUrl = await uploadPdf(File(product.pdfUrl));
+
+
+    // Create a new document reference
+    DocumentReference docRef = _db.collection('products').doc();
+
+// Convert the Category instance to a Map
+    Map<String, dynamic> categoryJson = product.category!.toJson();
+
+    // Create a new Map with the product data and the converted Category
+    Map<String, dynamic> productJson = product.toJson();
+    productJson['category'] = categoryJson;
+
+    // Add the product data to the Firestore document
+    await docRef.set(productJson);
+  }
 
 
 }

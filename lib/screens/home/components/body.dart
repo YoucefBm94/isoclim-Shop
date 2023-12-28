@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:shop_app/services/auth.dart';
+
 
 import '../../../size_config.dart';
 import 'categories.dart';

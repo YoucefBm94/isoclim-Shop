@@ -1,21 +1,21 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'Category.dart';
-
+import 'package:uuid/uuid.dart';
 part 'Product.g.dart';
 
+const uuid = Uuid();
 @JsonSerializable()
 class Product {
-   String id;
+    String id;
   final String title, description;
-   final List<String> ? images;
+    List<String>  images;
   final double rating, price;
   final bool isFavourite, isPopular;
   String pdfUrl;
 
-  final Category? category;
+   late final Category? category;
 
   Product({
-    required this.id,
     required this.images,
     this.rating = 0.0,
     this.isFavourite = false,
@@ -25,7 +25,8 @@ class Product {
     required this.description,
     required this.pdfUrl,
     required this.category,
-  });
+
+  }): id = uuid.v4();
 
   factory Product.fromJson(Map<String, dynamic> json) => _$ProductFromJson(json);
   Map<String, dynamic> toJson() => _$ProductToJson(this);

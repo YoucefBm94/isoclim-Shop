@@ -3,8 +3,6 @@ import 'package:go_router/go_router.dart';
 import 'package:shop_app/components/custom_surfix_icon.dart';
 import 'package:shop_app/components/default_button.dart';
 import 'package:shop_app/components/form_error.dart';
-import 'package:shop_app/screens/complete_profile/complete_profile_screen.dart';
-
 import '../../../constants.dart';
 import '../../../size_config.dart';
 

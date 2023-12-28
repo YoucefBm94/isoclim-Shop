@@ -1,7 +1,5 @@
-import 'dart:ui';
 import 'package:json_annotation/json_annotation.dart';
 
-import 'Product.dart';
 part 'Category.g.dart';
 
 enum EnumCategories {

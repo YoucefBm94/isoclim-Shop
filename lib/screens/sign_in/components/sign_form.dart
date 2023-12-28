@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shop_app/components/custom_surfix_icon.dart';
@@ -24,22 +23,23 @@ class _SignFormState extends State<SignForm> {
   bool? remember = false;
   final List<String?> errors = [];
 
-  final FirebaseAuth _auth = FirebaseAuth.instance;
 
   // Function to add an error to the error list
   void addError({String? error}) {
-    if (!errors.contains(error))
+    if (!errors.contains(error)) {
       setState(() {
         errors.add(error);
       });
+    }
   }
 
   // Function to remove an error from the error list
   void removeError({String? error}) {
-    if (errors.contains(error))
+    if (errors.contains(error)) {
       setState(() {
         errors.remove(error);
       });
+    }
   }
 
   @override

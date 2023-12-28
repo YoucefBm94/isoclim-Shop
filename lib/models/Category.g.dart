@@ -8,7 +8,6 @@ part of 'Category.dart';
 
 Category _$CategoryFromJson(Map<String, dynamic> json) => Category(
       name: json['name'] as String,
-
     );
 
 Map<String, dynamic> _$CategoryToJson(Category instance) => <String, dynamic>{
