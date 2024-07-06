@@ -1,15 +1,21 @@
 import 'package:flutter/material.dart';
 
+import '../../../models/Category.dart';
 import '../../../size_config.dart';
 import 'section_title.dart';
 
 class SpecialOffers extends StatelessWidget {
   const SpecialOffers({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
+    List<Category> categories = [
+      Category(name: EnumCategories.grilleDiffuseur.toString()),
+      Category(name: EnumCategories.caissonDeVentilation.toString()),
+      Category(name: EnumCategories.profileAccessoiresDeLaGaine.toString()),
+    ];
     return Column(
       children: [
         Padding(
@@ -26,14 +32,14 @@ class SpecialOffers extends StatelessWidget {
           child: Row(
             children: [
               SpecialOfferCard(
-                image: "assets/images/Image Banner 2.png",
-                category: "Smartphone",
+                image: "assets/images/glfs2.jpg",
+                category: "GRILLES ET DIFFUSEURS ",
                 numOfBrands: 18,
                 press: () {},
               ),
               SpecialOfferCard(
-                image: "assets/images/Image Banner 3.png",
-                category: "Fashion",
+                image: "assets/images/inline.jpg",
+                category: "VENTILATION",
                 numOfBrands: 24,
                 press: () {},
               ),
@@ -66,7 +72,7 @@ class SpecialOfferCard extends StatelessWidget {
       child: GestureDetector(
         onTap: press,
         child: SizedBox(
-          width: getProportionateScreenWidth(242),
+          width: getProportionateScreenWidth(150),
           height: getProportionateScreenWidth(100),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(20),
@@ -95,7 +101,7 @@ class SpecialOfferCard extends StatelessWidget {
                   ),
                   child: Text.rich(
                     TextSpan(
-                      style: TextStyle(color: Colors.white),
+                      style: const TextStyle(color: Colors.white),
                       children: [
                         TextSpan(
                           text: "$category\n",

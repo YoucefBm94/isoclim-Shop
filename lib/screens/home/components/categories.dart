@@ -9,14 +9,13 @@ class Categories extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<Map<String, dynamic>> categories = [
-      {"icon": "assets/icons/Flash Icon.svg", "text": "Ventes"},
-      {"icon": "assets/icons/Bill Icon.svg", "text": "Achats"},
-      {"icon": "assets/icons/Game Icon.svg", "text": "Article"},
-      {"icon": "assets/icons/Gift Icon.svg", "text": "Daily Gift"},
-      {"icon": "assets/icons/Discover.svg", "text": "More"},
+      {"icon": "assets/icons/Flash Icon.svg", "text": "Accueil"},
+      {"icon": "assets/icons/Bill Icon.svg", "text": "A propos"},
+      {"icon": "assets/icons/Game Icon.svg", "text": " Produits"},
+      {"icon": "assets/icons/Gift Icon.svg", "text": "Contact"},
     ];
     return Padding(
-      padding: EdgeInsets.all(getProportionateScreenWidth(20)),
+      padding: EdgeInsets.all(getProportionateScreenWidth(15)),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -35,11 +34,11 @@ class Categories extends StatelessWidget {
 
 class CategoryCard extends StatelessWidget {
   const CategoryCard({
-    Key? key,
+    super.key,
     required this.icon,
     required this.text,
     required this.press,
-  }) : super(key: key);
+  });
 
   final String? icon, text;
   final GestureTapCallback press;
@@ -49,7 +48,7 @@ class CategoryCard extends StatelessWidget {
     return GestureDetector(
       onTap: press,
       child: SizedBox(
-        width: getProportionateScreenWidth(55),
+        width: getProportionateScreenWidth(85),
         child: Column(
           children: [
             Container(
@@ -63,8 +62,12 @@ class CategoryCard extends StatelessWidget {
               child: SvgPicture.asset(icon!),
             ),
             const SizedBox(height: 5),
-            Text(text!, textAlign: TextAlign.center)
-          ],
+            Text(
+              text!,
+              textAlign: TextAlign.center,
+              overflow: TextOverflow.ellipsis,
+              maxLines: 1,
+            )          ],
         ),
       ),
     );

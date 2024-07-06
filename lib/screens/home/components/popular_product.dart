@@ -6,15 +6,22 @@ import '../../../services/firestoreservice.dart';
 import '../../../size_config.dart';
 import 'section_title.dart';
 
+/// A widget that displays a list of popular products.
+///
+/// This widget fetches the list of products from Firestore and displays
+/// only the products that are marked as popular. The products are displayed
+/// in a horizontal scrollable list.
 class PopularProducts extends StatefulWidget {
 
-  PopularProducts({super.key});
+  /// Creates a PopularProducts widget.
+  const PopularProducts({super.key});
 
   @override
   State<PopularProducts> createState() => _PopularProductsState();
 }
 
 class _PopularProductsState extends State<PopularProducts> {
+  /// The Firestore service to use for fetching products.
   FirestoreService ref =FirestoreService();
 
   @override
@@ -22,12 +29,17 @@ class _PopularProductsState extends State<PopularProducts> {
     return FutureBuilder<List<Product>>(
       future: ref.getProducts(),
       builder: (BuildContext context, AsyncSnapshot<List<Product>> snapshot) {
+        // Show a loading spinner while waiting for the products to load.
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const CircularProgressIndicator(); // show a loading spinner while waiting
-        } else if (snapshot.hasError) {
-          return Text('Error: ${snapshot.error}'); // show an error message if something went wrong
-        } else {
-          List<Product> products = snapshot.data!; // your list of products
+          return const CircularProgressIndicator();
+        }
+        // Show an error message if something went wrong while loading the products.
+        else if (snapshot.hasError) {
+          return Text('Error: ${snapshot.error}');
+        }
+        // If the products have loaded successfully, display them in a list.
+        else {
+          List<Product> products = snapshot.data!;
 
           return Column(
             children: [
@@ -43,13 +55,13 @@ class _PopularProductsState extends State<PopularProducts> {
                     ...List.generate(
                       products.length,
                           (index) {
+                        // Only display the product if it is marked as popular.
                         if (products[index].isPopular) {
                           return ProductCard(product: products[index]);
                         }
 
-
-
-                        return const SizedBox.shrink(); // here by default width and height are 0
+                        // If the product is not popular, don't display anything.
+                        return const SizedBox.shrink();
                       },
                     ),
                     SizedBox(width: getProportionateScreenWidth(20)),

@@ -81,7 +81,6 @@ class ProductCard extends StatelessWidget {
                   ),
                 ],
               ),
-              // Add the "Download PDF" button here
             ],
           ),
         ),

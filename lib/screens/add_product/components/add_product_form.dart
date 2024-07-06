@@ -21,7 +21,7 @@ class AddProductsFormState extends State<AddProductsForm> {
   String? title, description;
   late List<String> images;
   double? rating, price;
-  bool? isFavourite, isPopular;
+  bool isFavourite = false, isPopular = false;
   String? pdfUrl;
   EnumCategories? selectedCategory;
   Product? product;
@@ -87,8 +87,8 @@ class AddProductsFormState extends State<AddProductsForm> {
 
                   images: images,
                   rating: rating!,
-                  isFavourite: isFavourite!,
-                  isPopular: isPopular!,
+                  isFavourite: isFavourite,
+                  isPopular: isPopular,
                   title: title!,
                   price: price!,
                   description: description!,
@@ -110,7 +110,7 @@ class AddProductsFormState extends State<AddProductsForm> {
   DropdownButton<EnumCategories> buildCategoriesDropdown() {
     return DropdownButton<EnumCategories>(
       value: selectedCategory,
-      hint: Text('Select Category'),
+      hint: const Text('Select Category'),
       onChanged: (EnumCategories? newValue) {
         setState(() {
           selectedCategory = newValue;
@@ -233,7 +233,7 @@ class AddProductsFormState extends State<AddProductsForm> {
   SwitchListTile buildIsFavouriteSwitch() {
     return SwitchListTile(
       title: const Text('Is Favourite'),
-      value: isFavourite ?? false,
+      value: isFavourite ,
       onChanged: (value) {
         setState(() {
           isFavourite = value;
@@ -245,7 +245,7 @@ class AddProductsFormState extends State<AddProductsForm> {
   SwitchListTile buildIsPopularSwitch() {
     return SwitchListTile(
       title: const Text('Is Popular'),
-      value: isPopular ?? false,
+      value: isPopular ,
       onChanged: (value) {
         setState(() {
           isPopular = value;

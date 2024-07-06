@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:shop_app/models/Product.dart';
-
 import '../../../constants.dart';
 import '../../../size_config.dart';
 
 class ProductImages extends StatefulWidget {
   const ProductImages({
-    Key? key,
+    super.key,
     required this.product,
-  }) : super(key: key);
+  });
 
   final Product product;
 
@@ -23,16 +22,15 @@ class _ProductImagesState extends State<ProductImages> {
     return Column(
       children: [
         SizedBox(
-          width: getProportionateScreenWidth(238),
+          width: getProportionateScreenWidth(200), // Increase the width here
           child: AspectRatio(
-            aspectRatio: 1,
+            aspectRatio: 1.2, // Adjust the aspect ratio here
             child: Hero(
               tag: widget.product.id.toString(),
               child: Image.network(widget.product.images[selectedImage]),
             ),
           ),
-        ),
-        // SizedBox(height: getProportionateScreenWidth(20)),
+        ),        // SizedBox(height: getProportionateScreenWidth(20)),
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: Row(
@@ -56,8 +54,8 @@ class _ProductImagesState extends State<ProductImages> {
       },
       child: AnimatedContainer(
         duration: defaultDuration,
-        margin: EdgeInsets.only(right: 15),
-        padding: EdgeInsets.all(8),
+        margin: const EdgeInsets.only(right: 15),
+        padding: const EdgeInsets.all(8),
         height: getProportionateScreenWidth(48),
         width: getProportionateScreenWidth(48),
         decoration: BoxDecoration(

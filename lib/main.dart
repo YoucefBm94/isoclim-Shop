@@ -6,9 +6,7 @@ import 'package:shop_app/theme.dart';
 import 'Firebase_options.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
 
-
-
-Future <void> main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
@@ -34,23 +32,20 @@ Future <void> main() async {
 
   // Plugin must be initialized before using
   await FlutterDownloader.initialize(
-      debug: true, // optional: set to false to disable printing logs to console (default: true)
-      ignoreSsl: true // option: set to false to disable working with http links (default: false)
-  );
+      debug:
+          true, // optional: set to false to disable printing logs to console (default: true)
+      ignoreSsl:
+          true // option: set to false to disable working with http links (default: false)
+      );
 
   // Initialize Firebase App Check
 
-  runApp( MyApp());
+  runApp(const MyApp());
 }
 
-
-
-
-
-
-
-
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -59,10 +54,6 @@ class MyApp extends StatelessWidget {
       title: 'The Flutter Way - Template',
       theme: AppTheme.lightTheme(context),
       routerConfig: router,
-
-
     );
   }
 }
-
-

@@ -30,7 +30,6 @@ class _BodyState extends State<Body> {
             children: [
               ProductDescription(
                 product: widget.product,
-                pressOnSeeMore: () {},
               ),
               TextButton.icon(
                 onPressed: () async {
